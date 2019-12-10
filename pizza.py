@@ -97,10 +97,10 @@ menu_specialty_items = {}
 
 pizza_sample_object = {
   'name': 'Pizza 1',
-  'size': 'Large' #to allow lookups, use 'type': '3' instead
-  'toppings': [], #this will be filled in when toppings are selected
-  'price': "", # can be omitted. cost + len(toppings)*toppings_cost
-  'quantity': 0 # user editable. if qantity = 0 then delete pizza from cart
+  'size': 'Large' # for easy lookups, use 'type': '3' instead
+  'toppings': [], # this will be filled in when toppings are selected
+  'price': "",    # can be omitted. cost + len(toppings)*toppings_cost
+  'quantity': 0   # user editable. if quantity = 0 then delete pizza from cart
 }
 
 next_menu = 'menu_pizza_py'                                                                                             # Set the first menu
