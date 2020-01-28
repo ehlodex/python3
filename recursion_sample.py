@@ -9,6 +9,7 @@ alarm_defaults = {
         'default': int(9)}
 }
 
+
 def set_var(var_name=None):
     if var_name == None:
         alarm_time = set_var('time')
