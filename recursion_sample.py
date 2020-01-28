@@ -21,7 +21,7 @@ def set_var(var_name=None):
             default = alarm_defaults[var_name]['default']
             my_var = input('{} [{}] '.format(prompt, default)) or default
         except KeyError:
-            print(r'Whoops! The paramater "{}" does not exist!'.format(var_name))
+            print(r'Whoops! The parameter "{}" does not exist!'.format(var_name))
             my_var = None
         return my_var
 
