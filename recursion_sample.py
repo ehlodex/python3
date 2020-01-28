@@ -13,12 +13,13 @@ def set_var(var_name=None):
     if var_name == None:
         alarm_time = set_var('time')
         alarm_snooze = set_var('snooze')
+        print('Setting alarm for {} with a {}-minute snooze!'.format(alarm_time, alarm_snooze))
     else:
         try:
             assert alarm_defaults[var_name]
             prompt = alarm_defaults[var_name]['prompt']
             default = alarm_defaults[var_name]['default']
-            my_var = input('{} [{}] '.format(prompt, default))
+            my_var = input('{} [{}] '.format(prompt, default)) or default
         except KeyError:
             print(r'Whoops! The paramater "{}" does not exist!'.format(var_name))
             my_var = None
