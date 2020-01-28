@@ -1,16 +1,12 @@
 #!/usr/bin/env python3
 
 import os
+import threading
 import time
 from datetime import datetime
 from playsound import playsound
 
-# TODO: Allow custom alarm paths
-# TODO: Configure alarm_repeat a la cron
-# TODO: Create an alarm object
-# TODO: Optimize alarm wait times, i.e. time.sleep()
-# TODO: Construct the pseudocode
-# TODO: Write the actual code
+# IMPORTANT: alarm_repeat is currently unused!
 
 # This will execute each time the script is run or imported. This is not
 # necessarily the best option, as it prevents the alarms from being saved. The
@@ -25,28 +21,19 @@ default_alarm_snooze = int(9)
 default_alarm_sound = os.path.join(sound_path, 'default.mp3')
 default_alarm_name = 'Alarm'
 default_alarm_repeat = '0 0 * * *'
-alarm_list = [
-    {'alarm_time': '16:00', 'alarm_snooze': '5', 'alarm_active': True,
-     'alarm_sound': 'exit_sound',
-     'alarm_name': 'Sample Alarm 1'},
-    {'alarm_time': '08:00', 'alarm_snooze': '9', 'alarm_active': True,
-     'alarm_sound': 'startup_sound',
-     'alarm_name': 'Sample Alarm 2'},
-    {'alarm_time': '13:32', 'alarm_snooze': '9', 'alarm_active': True,
-     'alarm_sound': r'C:\Users\Username\Music\Artist\Album\Song.mp3',
-     'alarm_name': 'Sample Alarm 3'}
-]
+alarm_list = []
 
 
 def main():
     while True:
         now = datetime.now().strftime("%H:%M:%S")
-        for i, alarm in enumerate(alarm_list):
+        for alarm in alarm_list:
             how_soon = alarm['alarm_time'] + ":00"
             # calculate time delta
             # If the delta is smaller, change the delta
             if how_soon == now:
-                print('The alarm \'{}\' is active!'.format(alarm['alarm_name']))
+                # TODO: Thread the alarm sound
+                print(r'The alarm "{}" is active!'.format(alarm['alarm_name']))
                 alarm_sound = get_alarm_sound(alarm['alarm_sound'])
                 print('Playing the sound file at {}'.format(alarm_sound))
                 try:
@@ -54,43 +41,67 @@ def main():
                 except:
                     print('Cannot play any sounds! *beep* *beep* *beep*')
                 finally:
-                    # write the name and time of the next alarm, based on delta
+                    # TODO: write the name and time of the next alarm
                     pass
-                # If snooze != 0, then prompt to snooze or cancel, presume that
-                # the user wants to snooze after 1 minute of inactivity.
-                exit()
+                # TODO: Configure snooze function
+                # If snooze != '', then prompt the user to snooze or cancel the
+                # current alarm. Presume that the user wants to snooze after 45
+                # seconds of inactivity. This will prevent collision of alarms
+                # that are 1 minute apart.
         time.sleep(1)
 
 
-def set_alarm(alarm_name, alarm_time, alarm_snooze, alarm_sound):
-    # create a new alarm
-    # add the alarm to alarm_list
-    pass
+def set_alarm(alarm_time, alarm_snooze, alarm_sound, alarm_name, alarm_repeat):
+    # TODO: Check for time collision; we only want one alarm per time
+    # TODO: Move error-correction and default values here from ui_
+    alarm_list.append({'alarm_time': alarm_time, 'alarm_snooze': alarm_snooze,
+                       'alarm_sound': alarm_sound, 'alarm_name': alarm_name,
+                       'alarm_repeat': alarm_repeat, 'alarm_enabled': True})
 
 
 def ui_set_alarm():
-    # prompt for alarm values
-    # set_alarm(*args)
-    pass
+    # TODO: Move error-correction and default values out of the ui_
+    # A curse upon you, PEP 8, for an absurdly short 'maximum' line length!
+    alarm_time = \
+        input('What time shall the alarm be sounded? [{}] '
+              .format(default_alarm_time)) or default_alarm_time
+    alarm_snooze = \
+        input('How long (in minutes) should the alarm snooze? [{}] '
+              .format(default_alarm_snooze)) or default_alarm_snooze
+    alarm_sound = \
+        input('Path or name for the alarm sound [{}] '
+              .format(default_alarm_sound)) or default_alarm_sound
+    alarm_name = \
+        input('What is the name of this alarm? [{}] '
+              .format(default_alarm_name)) or default_alarm_name
+    alarm_repeat = \
+        input('How often, if ever, should the alarm be repeated? [{}] '
+              .format(default_alarm_repeat)) or default_alarm_repeat
+    set_alarm(alarm_time, alarm_snooze, alarm_sound, alarm_name, alarm_repeat)
 
 
 def delete_alarm(alarm_id):
-    # if alarm_id is a string:
-    #     enumerate through alarm_list to find a match
-    #     set alarm_id to a number
-    # if alarm_id is a number:
-    #     remove it from the alarm_list
-    # else:
-    #     The alarm cannot be found
-    #     Print a list of available alarms
-    pass
+    alarm_dict = None
+    for i, alarm in enumerate(alarm_list):
+        if alarm_id == alarm['alarm_name'] or alarm_id == str(i):
+            print('matched alarm {}'.format(i))
+            alarm_dict = alarm
+    try:
+        alarm_list.remove(alarm_dict)
+        print(r'Deleted alarm "{}"'.format(alarm_dict['alarm_name']))
+        print(alarm_dict)
+    except ValueError:
+        print('no match for {}'.format(alarm_id))
+
 
 
 def ui_delete_alarm():
-    # print a list of alarm_name, alarm_time, alarm_repeat
-    # alarm_id = input('Which alarm would you like to delete? ')
-    # delete_alarm(alarm_id)
-    pass
+    print(' ID  Time   Name')
+    for i, alarm in enumerate(alarm_list):
+        print('{:>3}  {:>5}  {}'
+              .format(i, alarm['alarm_time'], alarm['alarm_name']))
+    alarm_id = str(input('\nWhich alarm would you like to delete? '))
+    delete_alarm(alarm_id)
 
 
 def get_alarm_sound(alarm_sound):
@@ -105,4 +116,10 @@ def get_alarm_sound(alarm_sound):
 
 
 if __name__ == '__main__':
-    main()
+    # TODO: start the clock in the background
+    # TODO: present a user menu
+    # anything below here is for testing
+    set_alarm('17:00', '5', 'exit_sound.mp3', 'Go Home', '* * *')
+    set_alarm('09:00', '5', 'startup_sounds', 'Working', '* * *')
+    set_alarm('09:00', '9', default_alarm_sound, 'Sample Alarm', '')
+    ui_delete_alarm()
