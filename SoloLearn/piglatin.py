@@ -4,7 +4,7 @@
 english = input('Enter a phrase without punctuation: ').lower()
 piglatin = ''
 
-# Sanitize the string
+# NOT REQUIRED: Sanitize the string
 common_punctuation = ('.', '?', '!', ',', ';', ':')
 for punctuation in common_punctuation:
     english = english.replace(punctuation, '')
