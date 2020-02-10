@@ -8,9 +8,9 @@ agents = int(input('Agents: '))
 other_names = input('Others: ').replace(',', ' ')
 wait_time = 20
 
-names = other_names.split()
-names.append(your_name)
-names.sort()
+names = other_names.split()  # create a list
+names.append(your_name)      # add yourself
+names.sort()                 # alphabetize!
 
 position = names.index(your_name) + 1
 group = math.ceil(position/agents)
