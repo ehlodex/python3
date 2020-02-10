@@ -1,7 +1,7 @@
 #!/usr/bin/env/ python3
 """SoloLearn > Code Coach > Security"""
 
-floor = input()
+floor = input('Floor plan? Use "x" for empty space. ')
 floor = floor.replace('x', '')
 
 if '$T' in floor or 'T$' in floor:
