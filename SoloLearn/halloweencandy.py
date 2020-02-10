@@ -5,5 +5,4 @@ import math
 
 houses = int(input('houses: '))
 chance = lambda x : math.ceil((2 / x) * 100)
-
 print((chance(houses)))
