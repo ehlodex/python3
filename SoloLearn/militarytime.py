@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """SoloLearn > Code Coach > Military Time"""
 
+# You do NOT need datetime for Code Coach solution!
+
+# datetime is being used to display the current time as the default option for
+# the input prompt and is completely unnecessary (see last three lines of code)
+
 from datetime import datetime
 
 def convert_time(civ_time):
