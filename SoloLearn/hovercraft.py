@@ -1,7 +1,7 @@
 #!/usr/bin/env/ python3
 """SoloLearn > Code Coach > Hovercraft"""
 
-sales = int(input('How many did you sell? ') * 3)
+sales = int(input('How many did you sell? ')) * 3
 expense = 21
 
 if sales > expense:
