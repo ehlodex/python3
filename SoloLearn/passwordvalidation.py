@@ -9,9 +9,8 @@ chars = re.compile(r'[!@#$%&*]')
 
 num_count = len(nums.findall(password))
 char_count = len(chars.findall(password))
-password_len = len(password)
 
-if num_count >= 2 and char_count >= 2 and password_len >= 7:
+if num_count >= 2 and char_count >= 2 and len(password) >= 7:
     print('Strong')
 else:
     print('Weak')
