@@ -1,4 +1,4 @@
-/usr/bin/env/ python3
+#!/usr/bin/env/ python3
 """SoloLearn > Code Coach > Deja Vu"""
 
 string = input()
