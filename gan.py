@@ -9,8 +9,8 @@ import time
 import os
 
 default_max_tries = int(10)
-default_min = 1    # or random.randint(1, 100)
-default_max = 100  # or random.randint(default_min+50, default_min+100)
+default_min = random.randint(1, 100)  # or int(1)
+default_max = random.randint(default_min+50, default_min+100)  # or int(100)
 p1_name = p2_name = os.getlogin()
 p_names = ('GERTY', 'TARS', 'Data', 'Wall-E', 'Agent Smith', 'HAL 9000')
 
