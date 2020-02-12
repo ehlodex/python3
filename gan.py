@@ -60,7 +60,7 @@ def set_range(local_min=default_min, local_max=default_max, ui=True):
 
 def set_num(local_min, local_max, ui=True):
     if ui:
-        print('\n# # Make sure that Player 2 isn\'t looking!\n')
+        print('\n# # Make sure that {} isn\'t looking!\n'.format(p2_name))
         local_num = input('Pick a number between {} and {} : '
                           .format(local_min, local_max))
     else:
