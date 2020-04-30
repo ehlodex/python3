@@ -53,7 +53,7 @@ print(f'file : {o_file}')
 
 ##pathlib
 print(f'Testing {p_music_path} with pathlib...')
-p_dir = pathlib.Path(p_music_path).is_dir()
-p_file = pathlib.Path(p_music_path).is_file()
+p_dir = p_music_path.is_dir()
+p_file = p_music_path.is_file()
 print(f'dir  : {p_dir}')
 print(f'file : {p_file}')

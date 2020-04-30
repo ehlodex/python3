@@ -10,12 +10,12 @@ docstring with the triple quote on its own line.
 # __author__ = 'ehlodex'
 
 # IMPORTS
-# Standard Libraries, Third-Party, Local
-# from module import function as alias
+# [from module] import function [as alias]
+from pathlib import Path
 
 
 # GLOBALS / CONSTANTS
-
+script_path = Path(__file__).resolve().parent
 
 # FUNCTIONS
 def main():
