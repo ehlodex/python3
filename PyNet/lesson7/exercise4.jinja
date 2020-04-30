@@ -1,0 +1,10 @@
+{%- for int_name, config in interfaces.items() %}
+interface {{ int_name }}
+  switchport mode {{ config['mode'] }}
+  {%- if config['mode'] == 'access' %}
+  switchport access vlan {{ config['vlan'] }}
+  {%- else %}
+  switchport trunk native vlan {{ config['native_vlan'] }}
+  switchport trunk allowed vlan {{ config['trunk_vlans'] }}
+  {%- endif %}
+{%- endfor %}
