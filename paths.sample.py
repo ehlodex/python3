@@ -29,7 +29,7 @@ p_script_path = pathlib.Path(__file__).resolve().parent
 if o_home_path == p_script_path:
     print('pathlib is working from home')
 else:
-    print(f'pathlib is working from {p_script_path}')
+    print(f'pathlib is working in {p_script_path}')
 
 
 # Append information to an existing path # ---------------------------->
