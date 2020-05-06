@@ -6,19 +6,19 @@ import requests
 
 from datetime import datetime, timedelta
 
-config_file = 'infopoint.config.json'
+config_file = 'infopoint_config.json'
 
 
 # -- Convert JSON /Date()/ to datetime -------------------------------->
 def json_date(json_date):
     sign = json_date[-7]
 
-    if sign not in '+-' or len(date) == 13:
-        millisec = int(date[6:-2])
+    if sign not in '+-' or len(json_date) == 13:
+        millisec = int(json_date[6:-2])
     else:
-        millisec = int(date[6:-7])
-        hh = int(date[-7:-4])
-        mm = int(date[-4:-2])
+        millisec = int(json_date[6:-7])
+        hh = int(json_date[-7:-4])
+        mm = int(json_date[-4:-2])
         if sign == '-': mm = -mm
         millisec += (hh * 60 + mm) * 60000
 
