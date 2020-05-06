@@ -1,0 +1,17 @@
+{
+    "mysql":{
+        "host":"unit.org.uk",
+        "user":"badwolf",
+        "passwd":"buffalo",
+        "db":"tardis"
+    },
+    "other":{
+        "preprocessing_queue":[
+            "preprocessing.scale_and_center",
+            "preprocessing.dot_reduction",
+            "preprocessing.connect_lines"
+            ],
+        "use_anonymous":true
+    },
+    "type": "json"
+}

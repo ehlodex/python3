@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+"""
+Example: Working with SIGINT
+"""
 
 from signal import signal, SIGINT
 from sys import exit

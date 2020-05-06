@@ -1,0 +1,4 @@
+Rendering database connection string using {{ type }}:
+mysql:// {{- mysql.user -}} 
+{%- if mysql.passwd -%} : {{- mysql.passwd -}} {%- endif -%} 
+@ {{- mysql.host -}} / {{- mysql.db }}

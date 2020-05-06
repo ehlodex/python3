@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
-"""os.path -vs- pathlib"""
+"""
+os.path -vs- pathlib
+"""
 
 import os
 import pathlib
