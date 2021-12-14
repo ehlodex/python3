@@ -70,6 +70,7 @@ def decypher_monika():
 
 def decypher_natsuki():
     # Natsuki is a JFIF image.
+    # Use Photoshop to recolor and edit the image into a portrait.
     i = Path(characters_path/"natsuki.chr")
     o = Path(script_path/"natsuki.jfif")
     o.write_bytes(i.read_bytes())  # copy and rename without shutil
@@ -77,6 +78,7 @@ def decypher_natsuki():
 
 def decypher_sayori():
     # Sayori is an OGG audio clip.
+    # Convert the audio to a spectrogram to get a QR code.
     i = Path(characters_path/"sayori.chr")
     o = Path(script_path/"sayori.ogg")
     o.write_bytes(i.read_bytes())  # copy and rename without shutil
